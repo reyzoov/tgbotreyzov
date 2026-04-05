@@ -1,4 +1,3 @@
-Rezdravs:
 // Инициализация Telegram Web App
 const tg = window.Telegram.WebApp;
 tg.expand();
@@ -47,15 +46,15 @@ function updateUI() {
     levelSpan.textContent = userData.level;
     energySpan.textContent = userData.energy_current;
     energyMaxSpan.textContent = userData.energy_max;
-    clickPowerSpan.textContent = 💪 x${userData.click_power};
+    clickPowerSpan.textContent = `💪 x${userData.click_power}`;
     prestigeCountSpan.textContent = userData.prestige_count;
     prestigeBonusSpan.textContent = Math.floor((userData.prestige_bonus - 1) * 100);
     
     // Обновление опыта
     const expNeeded = userData.level * 100;
     const expPercent = (userData.experience / expNeeded) * 100;
-    expFill.style.width = ${expPercent}%;
-    expText.textContent = ${userData.experience}/${expNeeded};
+    expFill.style.width = `${expPercent}%`;
+    expText.textContent = `${userData.experience}/${expNeeded}`;
     
     // Обновление стоимости апгрейдов
     updateUpgradeCosts();
@@ -63,16 +62,16 @@ function updateUI() {
 
 // Функция обновления стоимости апгрейдов
 function updateUpgradeCosts() {
-    const clickPowerLevel = upgrades.click_power  0;
-    const energyMaxLevel = upgrades.energy_max  0;
+    const clickPowerLevel = upgrades.click_power || 0;
+    const energyMaxLevel = upgrades.energy_max || 0;
     
     const clickPowerCost = Math.floor(100 * Math.pow(1.5, clickPowerLevel));
     const energyMaxCost = Math.floor(100 * Math.pow(1.5, energyMaxLevel));
     
     document.getElementById('cost_click_power').textContent = clickPowerCost;
     document.getElementById('cost_energy_max').textContent = energyMaxCost;
-    document.getElementById('level_click_power').textContent = Ур.${clickPowerLevel};
-    document.getElementById('level_energy_max').textContent = Ур.${energyMaxLevel};
+    document.getElementById('level_click_power').textContent = `Ур.${clickPowerLevel}`;
+    document.getElementById('level_energy_max').textContent = `Ур.${energyMaxLevel}`;
 }
 
 // Функция клика
@@ -88,7 +87,7 @@ function handleClick(event) {
     
     // Показываем число
     const clickValue = userData.click_power * userData.prestige_bonus;
-    showFloatingNumber(+${Math.floor(clickValue)}, event.clientX, event.clientY);
+    showFloatingNumber(`+${Math.floor(clickValue)}`, event.clientX, event.clientY);
     
     // Отправляем клик в бота
     tg.sendData(JSON.stringify({
@@ -109,8 +108,8 @@ function showFloatingNumber(text, x, y, color = '#ffd966') {
     const div = document.createElement('div');
     div.textContent = text;
     div.className = 'floating-number';
-    div.style.left = ${x}px;
-    div.style.top = ${y - 50}px;
+    div.style.left = `${x}px`;
+    div.style.top = `${y - 50}px`;
     div.style.color = color;
     document.body.appendChild(div);
     
@@ -154,14 +153,14 @@ tg.onEvent('message', (message) => {
         
         if (data.user) {
             userData = {
-                total_clicks: data.user.total_clicks,
-                level: data.user.level,
-                experience: data.user.experience,
-                energy_current: data.user.energy_current,
-                energy_max: data.user.energy_max,
-                click_power: data.user.click_power,
-                prestige_count: data.user.prestige_count,
-                prestige_bonus: data.user.prestige_bonus
+                total_clicks: data.user.total_clicks || 0,
+                level: data.user.level || 1,
+                experience: data.user.experience || 0,
+                energy_current: data.user.energy_current || 100,
+                energy_max: data.user.energy_max || 100,
+                click_power: data.user.click_power || 1,
+                prestige_count: data.user.prestige_count || 0,
+                prestige_bonus: data.user.prestige_bonus || 1.0
             };
             
             if (data.upgrades) {
