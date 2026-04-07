@@ -1,42 +1,47 @@
-Rezdravs:
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     min-height: 100vh;
     padding: 16px;
     color: #fff;
 }
 
 .container {
-    max-width: 400px;
+    max-width: 450px;
     margin: 0 auto;
 }
 
 /* Header */
 .header {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 16px;
+    border-radius: 24px;
+    padding: 18px 16px;
     margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
 .stats {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    gap: 10px;
 }
 
 .stat {
     text-align: center;
-    font-size: 18px;
-    font-weight: bold;
+    background: rgba(0,0,0,0.3);
+    padding: 8px 12px;
+    border-radius: 50px;
+    flex: 1;
 }
 
 .stat-label {
@@ -50,9 +55,9 @@ body {
 }
 
 .exp-bar {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    height: 24px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    height: 28px;
     position: relative;
     overflow: hidden;
 }
@@ -62,7 +67,7 @@ body {
     height: 100%;
     width: 0%;
     transition: width 0.3s ease;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 .exp-text {
@@ -70,13 +75,13 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
     color: #fff;
     text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
 }
 
-/* Click Area */
+/* Click Area - Minion */
 .click-area {
     text-align: center;
     margin: 20px 0;
@@ -84,9 +89,9 @@ body {
 }
 
 .minion {
-    width: 200px;
-    height: 200px;
-    background: #ffd966;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle at 35% 35%, #f7d44a, #dbaa1a);
     border-radius: 50%;
     margin: 0 auto;
     display: flex;
@@ -94,50 +99,64 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: transform 0.1s ease;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transition: transform 0.08s linear;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3), inset 0 -5px 0 rgba(0,0,0,0.1);
     position: relative;
+    border: 3px solid #f1c232;
 }
 
 .minion:active {
-    transform: scale(0.95);
+    transform: scale(0.96);
 }
 
 .minion-face {
-    font-size: 80px;
-    position: relative;
+    font-size: 70px;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+}
+
+.minion-eyes {
+    font-size: 35px;
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    letter-spacing: 15px;
 }
 
 .minion-goggle {
-    font-size: 40px;
+    font-size: 45px;
     position: absolute;
-    top: 40px;
+    top: 55px;
     left: 50%;
     transform: translateX(-50%);
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
 }
 
 .click-power {
-    margin-top: 12px;
-    font-size: 18px;
+    margin-top: 16px;
+    font-size: 20px;
     font-weight: bold;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.6);
     display: inline-block;
-    padding: 6px 16px;
-    border-radius: 20px;
+    padding: 8px 24px;
+    border-radius: 40px;
+    backdrop-filter: blur(4px);
 }
 
 /* Upgrades */
 .upgrades {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 16px;
+    border-radius: 24px;
+    padding: 18px;
     margin: 20px 0;
+    border: 1px solid rgba(255,200,80,0.3);
 }
 
 .upgrades h3 {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     font-size: 18px;
+    text-align: center;
 }
 
 .upgrade-list {
@@ -150,19 +169,21 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    background: rgba(0, 0, 0, 0.2);
-    padding: 12px;
-    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 12px 16px;
+    border-radius: 20px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.2s;
+    border: 1px solid rgba(255,215,0,0.2);
 }
 
 .upgrade-item:active {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(255,215,0,0.2);
+    transform: scale(0.98);
 }
 
 .upgrade-icon {
-    font-size: 32px;
+    font-size: 36px;
 }
 
 .upgrade-info {
@@ -171,7 +192,7 @@ body {
 
 .upgrade-name {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .upgrade-desc {
@@ -182,56 +203,91 @@ body {
 .upgrade-cost {
     background: #ffd966;
     color: #333;
-    padding: 4px 12px;
-    border-radius: 20px;
+    padding: 5px 14px;
+    border-radius: 25px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .upgrade-level {
     font-size: 11px;
-    opacity: 0.8;
-    min-width: 50px;
-    text-align: right;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 8px;
+    border-radius: 20px;
+    min-width: 55px;
+    text-align: center;
 }
 
-/* Prestige Info */
+/* Prestige Section */
+.prestige-section {
+    background: linear-gradient(135deg, rgba(88, 28, 135, 0.8), rgba(46, 16, 101, 0.9));
+    border-radius: 24px;
+    padding: 16px;
+    backdrop-filter: blur(10px);
+    border: 1px solid #ffd966;
+}
+
 .prestige-info {
-    background: rgba(255, 215, 0, 0.2);
-    border-radius: 12px;
-    padding: 12px;
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
-    border: 1px solid #ffd966;
+    margin-bottom: 15px;
+    padding: 8px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 16px;
 }
 
 .prestige-badge, .prestige-bonus {
     font-weight: bold;
+    font-size: 14px;
+}
+
+.prestige-button {
+    width: 100%;
+    background: linear-gradient(135deg, #ffd966, #ffb347);
+    border: none;
+    color: #2d1b00;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.1s;
+    margin-bottom: 8px;
+    font-weight: 800;
+}
+
+.prestige-button:active {
+    transform: scale(0.97);
+}
+
+.prestige-requirement {
+    font-size: 11px;
+    text-align: center;
+    opacity: 0.8;
 }
 
 /* Animations */
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-12px) scale(1.02); }
 }
 
 .minion-click {
-    animation: bounce 0.2s ease;
+    animation: bounce 0.18s cubic-bezier(0.34, 1.2, 0.64, 1);
 }
 
 @keyframes float {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    100% { transform: translateY(-50px) scale(1.5); opacity: 0; }
+    0% { transform: translateY(0) scale(0.8); opacity: 1; }
+    100% { transform: translateY(-70px) scale(1.3); opacity: 0; }
 }
 
 .floating-number {
     position: fixed;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
-    color: #ffd966;
+    color: #ffec80;
     pointer-events: none;
     z-index: 1000;
-    animation: float 0.5s ease-out forwards;
-    text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+    animation: float 0.6s ease-out forwards;
+    text-shadow: 2px 2px 0 #b45f06;
 }
